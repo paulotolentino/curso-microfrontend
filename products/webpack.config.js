@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ModuleFederationPluguin = require("webpack/lib/container/ModuleFederationPlugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 module.exports = {
   mode: "development",
@@ -7,12 +7,13 @@ module.exports = {
     port: 8081,
   },
   plugins: [
-    new ModuleFederationPluguin({
+    new ModuleFederationPlugin({
       name: "products",
       filename: "remoteEntry.js",
       exposes: {
         "./ProductsIndex": "./src/index.js",
       },
+      shared: ["faker"],
     }),
     new HtmlWebpackPlugin({
       template: "/public/index.html",
