@@ -11,7 +11,7 @@ module.exports = {
       name: "cart",
       filename: "remoteEntry.js",
       exposes: {
-        "./CartShow": "./src/index",
+        "./CartShow": "./src/bootstrap",
       },
       // This approach makes faker be loaded just one time if it is the same version,
       // If not, it will load as much times as necessary
