@@ -3,18 +3,15 @@ import ReactDOM from "react-dom";
 import { createMemoryHistory, createBrowserHistory } from "history";
 import App from "./app";
 
-const mount = (el, { onNavigate, initialPathname, defaultHistory }) => {
-  const history = defaultHistory || createMemoryHistory();
+const mount = (el, { onNavigate, initialPath, defaultHistory }) => {
+  const history =
+    defaultHistory ||
+    createMemoryHistory({
+      initialEntries: [initialPath],
+    });
 
   if (onNavigate) {
     history.listen(onNavigate);
-  }
-
-  if (initialPathname) {
-    const { pathname } = history.location;
-    if (pathname !== initialPathname) {
-      history.push(initialPathname);
-    }
   }
 
   ReactDOM.render(<App history={history} />, el);
